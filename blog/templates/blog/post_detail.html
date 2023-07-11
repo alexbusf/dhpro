@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block description %} 
+<meta name="description" content="{{ post.description }}"/>
+{% endblock %}
+
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block content %}
+<section>
+    <article>
+        <h1 class="text-center my-4">{{ post.title }}</h1>
+        <p>{{ post.content |safe }}</p>
+    </article>
+</section>
+{% endblock %}
