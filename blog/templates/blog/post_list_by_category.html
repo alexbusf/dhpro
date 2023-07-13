@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block description %} 
+{% for post in post_list|slice:":1" %}
+<meta name="description" content="Посты из катеории {{ post.category }}"/>
+{% endfor %}
+{% endblock %}
+
+{% block title %} Категория {% for post in post_list|slice:":1" %}{{ post.category }}{% endfor %}{% endblock %}
+
+{% block content %}
+<section>
+    {% for post in post_list %}
+    <article>
+        <h1 class="text-center my-4"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h1>
+        <div>{{ post.content|truncatewords:60|safe }}
+        <a href="{{ post.get_absolute_url }}" role="button">Узнать подробнее</a>
+        </div>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}

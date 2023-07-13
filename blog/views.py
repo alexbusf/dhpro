@@ -1,6 +1,7 @@
 from .models import Post, Category
 from django.views import generic
 from django.db.models import Q
+from django.http import Http404
 
 """All posts"""
 class PostList(generic.ListView):
@@ -10,11 +11,15 @@ class PostList(generic.ListView):
 class PostListByCategory(generic.ListView):
     model = Post
     category = None
+    template_name="blog/post_list_by_category.html"
 
     def get_queryset(self):
-        self.category = Category.objects.get(pk=self.kwargs['pk'])
-        queryset = Post.objects.all().filter(category_id=self.category.id)
-        return queryset
+        try:
+            self.category = Category.objects.get(pk=self.kwargs['pk'])
+            queryset = Post.objects.all().filter(category_id=self.category.id)
+            return queryset
+        except:
+            raise Http404("Category does not exist")
     
 
 """Post search"""
