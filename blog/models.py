@@ -2,10 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.urls import reverse
+from pytils.translit import slugify
 
 """Categories models."""
 class Category(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=20, unique=True)
+    slug = models.SlugField()
+    description = models.CharField('Description', max_length=160)
 
     class Meta:
         verbose_name = "Category"
@@ -15,7 +18,12 @@ class Category(models.Model):
         return self.title
     
     def get_absolute_url(self): 
-        return reverse('post-by-category', args=[str(self.id)])
+        return reverse('post-by-category', kwargs={"slug": self.slug})
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        return super().save(*args, **kwargs)
     
 
 """Posts models."""

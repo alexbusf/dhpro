@@ -6,16 +6,18 @@ from django.http import Http404
 """All posts"""
 class PostList(generic.ListView):
     model = Post
+    paginate_by = 5
 
 """Post by category"""
 class PostListByCategory(generic.ListView):
     model = Post
+    paginate_by = 5
     category = None
     template_name="blog/post_list_by_category.html"
 
     def get_queryset(self):
         try:
-            self.category = Category.objects.get(pk=self.kwargs['pk'])
+            self.category = Category.objects.get(slug=self.kwargs['slug'])
             queryset = Post.objects.all().filter(category_id=self.category.id)
             return queryset
         except:

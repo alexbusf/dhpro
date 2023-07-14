@@ -2,7 +2,7 @@
 
 {% block description %} 
 {% for post in post_list|slice:":1" %}
-<meta name="description" content="Посты из катеории {{ post.category }}"/>
+<meta name="description" content="{{ post.category.description }}"/>
 {% endfor %}
 {% endblock %}
 
@@ -18,5 +18,21 @@
         </div>
     </article>
     {% endfor %}
+    <br/>
+    <br/>
+    <br/>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">Первая</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Предыдущая</a></li>
+            {% endif %}
+            <li class="page-item"><a class="page-link disabled" href="#">{{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</a></li>
+            {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Следующая</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Последняя</a></li>
+            {% endif %}
+        </ul>
+    </nav>
 </section>
 {% endblock %}
