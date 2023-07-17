@@ -32,6 +32,7 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     title = models.CharField('Title', max_length=60)
     description = models.CharField('Description', max_length=160)
+    precontent = models.TextField()
     content = RichTextUploadingField(blank=True, null=True)
     date = models.DateTimeField(auto_now=True)
 
