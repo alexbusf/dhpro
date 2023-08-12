@@ -15,6 +15,20 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'osago' %}">ОСАГО</a>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Финансовые услуги
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'debetcard' %}">Дебетовые карты</a></li>
+              <li><a class="dropdown-item" href="{% url 'creditcard' %}">Кредитные карты</a></li>
+              <li><a class="dropdown-item" href="{% url 'hypothec' %}">Ипотека</a></li>
+              <li><a class="dropdown-item" href="{% url 'microcredit' %}">Микрокредиты</a></li>
+              <li><a class="dropdown-item" href="{% url 'credit' %}">Кредит наличными</a></li>
+              <li><a class="dropdown-item" href="{% url 'rco' %}">Расчетно-кассовое обслуживание</a></li>
+              <li><a class="dropdown-item" href="{% url 'deposit' %}">Банковские вклады</a></li>
+            </ul>
+          </li>
         </ul>
         <form class="d-flex" role="search" action="{% url 'post-search' %}" method="GET">
           <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search"  name = "q">

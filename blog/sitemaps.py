@@ -16,9 +16,11 @@ class BlogSitemap(Sitemap):
 
 """Карта-сайта для статичных страниц"""
 class StaticSitemap(Sitemap):
+    changefreq = 'monthly'
+    priority = 0.9
 
     def items(self):
-        return ['osago']
+        return ['osago', 'debetcard', 'creditcard', 'microcredit', 'credit', 'rco', 'deposit', 'hypothec']
     
     def location(self, item):
         return reverse(item)
