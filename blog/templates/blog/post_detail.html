@@ -11,7 +11,11 @@
     <article>
         <h1 class="text-center my-4">{{ post.title }}</h1>
         <p>{{ post.precontent }}</p>
+        <p>{{post.category.advertising | safe}}</p>
         <p>{{ post.content |safe }}</p>
+        <p>{{post.category.advertising | safe}}</p>
     </article>
+    <script src="https://yastatic.net/share2/share.js"></script>
+    <div class="ya-share2" data-curtain data-shape="round" data-services="vkontakte,odnoklassniki,telegram,viber,whatsapp"></div>
 </section>
 {% endblock %}

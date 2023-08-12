@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block description %} 
-<meta name="description" content="Список постов"/>
+<meta name="description" content="Лента статей"/>
 {% endblock %}
 
-{% block title %}Список постов{% endblock %}
+{% block title %}Лента статей{% endblock %}
 
 {% block content %}
 <section>
@@ -12,6 +12,7 @@
     <article>
         <h1 class="text-center my-4"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h1>
         <div>
+            <p>Категория: <a href="{{ post.category.get_absolute_url }}" role="button"> {{ post.category.title }}</a></p>
             <p>{{ post.precontent }}</p>
             <a href="{{ post.get_absolute_url }}" role="button"> Читать далее</a>
         </div>
